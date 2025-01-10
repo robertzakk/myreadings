@@ -1,0 +1,33 @@
+:root {
+    --ff: "Roboto", serif;
+    
+    --h1: bold 1.125rem/1em var(--ff);
+    --h2: bold 1rem/1.4em var(--ff);
+    --p: 1rem/1.4rem var(--ff);
+    --p2: .875rem/1.4em var(--ff);
+
+    --gray100: hsl(0, 0%, 100%);
+    --gray70: hsl(0, 0%, 70%);
+    --gray0: hsl(0, 0%, 0%);
+}
+
+html {
+    font-family: var(--ff);
+    font-size: 2rem;
+}
+
+h1 {
+    font: var(--h1);
+}
+
+h2 {
+    font: var(--h2);
+}
+
+p {
+    font: var(--p);
+}
+
+.p2 {
+    font: var(--p2) !important;
+}

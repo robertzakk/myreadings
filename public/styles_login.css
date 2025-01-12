@@ -1,0 +1,168 @@
+:root {
+    --ff: "Roboto", serif;
+    
+    --h1: bold 3rem/1em var(--ff);
+    --h2: 2.5rem/1.4em var(--ff);
+    --p: lighter 400 rem/1.4rem var(--ff);
+    --p2: .875rem/1.4em var(--ff);
+
+    --gray100: hsl(0, 0%, 100%);
+    --gray70: hsl(0, 0%, 70%);
+    --gray0: hsl(0, 0%, 0%);
+
+    --orange1: #e46b2a;
+    --orange2: #E68551;
+    --orange3: #ECA179;
+    --orange4: #F9E0D2;
+
+    --dark1: #1D1D1D;
+    --dark2: #222222;
+}
+
+/*
+    Element Selectors
+*/
+html {
+    font-family: var(--ff);
+    font-size: 2rem;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--dark1);
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    font: var(--h1);
+    color: var(--gray100);
+}
+
+h2 {
+    font: var(--h2);
+    color: var(--gray100);
+}
+
+p {
+    font: var(--p);
+    color: var(--gray100);
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title > img {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1.2rem;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    background-color: var(--dark2);
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+    border: solid 0.2rem var(--orange1);
+}
+
+form > label {
+    margin-bottom: 0.5rem;
+    color: var(--gray70);
+}
+
+form > input {
+    margin-bottom: 1.5rem;
+    outline: 0;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    border: 0;
+    font-size: 1rem;
+    background-color: rgb(42, 42, 42);
+    color: rgb(246, 246, 246);
+}
+
+form > input::placeholder {
+    color: rgb(72, 72, 72);
+}
+
+form > button {
+    border: 0;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background-color: var(--orange1);
+    border: solid 0.2rem white;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+    position: relative;
+
+    transition-property: border color;
+    transition-duration: 0.5s;
+}
+
+form > button:hover {
+    cursor: pointer;
+}
+
+form > button::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    opacity: 0;
+    height: 100%;
+    background: white;
+    left:0;
+    top: 0;
+    border-radius: 2rem;
+
+    transition-property: width opacity;
+    transition-duration: 0.3s;
+}
+
+form > button:hover::before {
+    width: 100%;
+    opacity: 1;
+}
+
+form > button:hover {
+    color: var(--orange1);
+    border: solid 0.2rem var(--orange1);
+}
+
+form > button::after {
+    content: 'Log In';
+    position: relative;
+}
+
+.sign-up-btn {
+    border: 0;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background-color: rgb(68, 217, 88);
+    border: solid 0.2rem white;
+    font-size: 0.9rem;
+    color: white;
+    font-weight: bold;
+    width: 60%;
+    margin-top: 1rem;
+}

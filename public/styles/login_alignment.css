@@ -1,0 +1,28 @@
+/*
+    Element Selectors
+*/
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*
+    Class Selectors
+*/
+.login {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

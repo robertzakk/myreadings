@@ -15,18 +15,19 @@ db.connect();
 const app = express();
 const port = 4001;
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post("/users/new", async (req, res) => {
     try {
         const response = await db.query(
-            "INSERT INTO users (name, about) VALUES ($1, $2) RETURNING id",
+            `INSERT INTO users (name, about)
+             VALUES ($1, $2) RETURNING id`,
             ["olames", "this is the about me also"],
         );
 
         await db.query(
-            "INSERT INTO user_authentications (user_id, email, password) VALUES ($1, $2, $3)",
+            `INSERT INTO user_authentications (user_id, email, password)
+             VALUES ($1, $2, $3)`,
             [response.rows[0].id, req.body.email, req.body.password],
         );
     } catch (err) {
@@ -38,7 +39,9 @@ app.post("/users/new", async (req, res) => {
 app.post("/users/verify", async (req, res) => {
     try {
         const response = await db.query(
-            "SELECT name, about FROM user_authentications JOIN users ON user_id = users.id WHERE email = $1 and password = $2",
+            `SELECT name, about FROM user_authentications
+             JOIN users ON user_id = users.id
+             WHERE email = $1 and password = $2`,
             [req.body.email, req.body.password]
         );
 
@@ -54,5 +57,5 @@ app.post("/users/verify", async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Users API is listening on port ${port}.`);
+    console.log(`Users Private API running on port ${port}.`);
 });

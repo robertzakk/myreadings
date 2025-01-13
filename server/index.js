@@ -9,8 +9,10 @@ const port = 4000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+app.set("views", "./server/views");
+
 app.get("/", (req, res) => {
-    res.render("login.ejs");
+    res.render("index.ejs");
 });
 
 app.post("/", async (req, res) => {

@@ -1,0 +1,408 @@
+:root {
+    --ff: "Roboto", serif;
+    
+    --h1: bold 3rem/1em var(--ff);
+    --h2: 2.5rem/1.4em var(--ff);
+    --p: lighter 400 1rem/1.4rem var(--ff);
+    --p2: .875rem/1.4em var(--ff);
+
+    --gray100: hsl(0, 0%, 100%);
+    --gray70: hsl(0, 0%, 70%);
+    --gray0: hsl(0, 0%, 0%);
+
+    --orange1: #e46b2a;
+    --orange2: #E68551;
+    --orange3: #ECA179;
+    --orange4: #F9E0D2;
+
+    --dark1: #1D1D1D;
+    --dark2: #222222;
+
+    --success: #2ae443;
+    --danger: #e42a2a;
+}
+
+/*
+    Element Selectors
+*/
+html {
+    font-family: var(--ff);
+    font-size: 2rem;
+}
+
+body {
+    background-color: var(--dark1);
+
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    font: var(--h1);
+    color: var(--gray100);
+}
+
+h2 {
+    font: var(--h2);
+    color: var(--gray100);
+}
+
+p {
+    font: var(--p);
+    color: var(--gray100);
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.5rem 2.5rem;
+
+    background-color: var(--dark1);
+    border: solid 0.3rem var(--orange1);
+}
+
+/* CLASS SELECTORS */
+
+/* NAV BAR */
+.navbar {
+    z-index: 1;
+
+    padding: 0 2rem;
+    max-width: 75rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.navbar-list {
+    background-color: var(--orange1);
+    list-style: none;
+
+    height: 3rem;
+    border-radius: 1.5rem;
+    padding: 0 rem;
+}
+
+.navbar-item {
+    min-width: 8rem;
+}
+
+.navbar-item img {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-right: 0.5rem;
+}
+
+.navbar-search-input {
+    background-color: var(--orange3);
+    font: var(--p);
+    color: white;
+    outline: none;
+    border: 0;
+    width: 100%;
+    border-radius: 2rem;
+
+    padding: 0.4rem 1rem;
+    margin: 0;
+}
+
+.navbar-search-input::placeholder {
+    color: var(--orange4);
+}
+
+/* PROFILE */
+.profile {
+    padding-top: 6rem;
+}
+
+.profile-picture {
+    margin-right: 3rem;
+}
+
+.profile-picture img {
+    border: solid 0.2rem var(--orange1);
+    border-radius: 1rem;
+
+    width: 20rem;
+    height: 20rem;
+}
+
+.profile-picture p {
+    color: var(--gray70);
+}
+
+.profile-info h1 {
+    margin: 1rem 0 2rem 0;
+}
+
+.profile-about {
+    background-color: var(--dark2);
+    border-radius: 1rem;
+
+    width: 25rem;
+    padding: 1.2rem;
+}
+
+.profile-about h2 {
+    color: var(--orange1);
+    margin: 0;
+}
+
+.profile-about p {
+    margin: 0;
+}
+
+.profile-stats p {
+    color: var(--gray70);
+    margin: 1.5rem 0 0 0;
+}
+
+/* BOOKS */
+.books {
+    margin-top: 3rem;
+}
+
+.books-direction p {
+    color: var(--orange3);
+    margin: 0.5rem
+}
+
+.books-direction img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.orange-line1 {
+    background-color: var(--orange1);
+
+    height: 1.5rem;
+    top: 0.1rem;
+}
+
+.orange-line2 {
+    background-color: var(--orange2);
+
+    height: 2rem;
+    top: 0.1rem;
+}
+
+.books-page {
+    background-color: var(--orange3);
+
+    top: 0.1rem;
+    padding-top: 5rem;
+}
+
+.books-page h1 {
+    color: var(--orange4);
+    margin: 0;
+}
+
+.books-section {
+    margin-top: 2rem;
+}
+
+.books-section div p {
+    color: var(--orange4);
+    text-align: right;
+}
+
+.books-section div {
+    background-color: var(--orange2);
+    border-radius: 1rem;
+
+    padding: 2rem 2rem 0rem 2rem;
+}
+
+.books-grid button {
+    background-color: transparent;
+    border: 0;
+
+    padding: 0;
+}
+
+.books-grid button img {
+    border-radius: 1rem;
+
+    height: 13rem;  
+    width: 100%;
+}
+
+.books-loadmore-btn {
+    background-color: var(--success) !important;
+    
+    margin: 2rem 0;
+    width: 20rem;
+}
+
+.books-loadmore-btn::after {
+    content: 'Load More';
+}
+
+.books-loadmore-btn:hover {
+    color: var(--success) !important;
+    border: solid 0.2rem var(--success) !important;
+}
+
+/* FOOTER */
+.footer-copyright img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+}
+
+.footer-company {
+    font-weight: bold;
+}
+
+.footer-copyright-text {
+    margin: 0.25rem 0 0 0;
+}
+
+.footer-copyright-text span {
+    color: var(--orange1)
+}
+
+.footer-developers-title {
+    color: var(--orange1);
+    font-weight: bold;
+
+    margin: 0;
+}
+
+.footer-developer {
+    margin: 0.5rem 0 0 0;
+}
+
+.footer-contact-title {
+    color: var(--orange1);
+    font-weight: bold;
+    
+    margin: 0;
+}
+
+.footer-contact {
+    margin: 0.5rem 0 0 0;
+}
+
+/* LOGIN */
+.login {
+    background-color: var(--dark2);
+    border: solid 0.2rem var(--orange1);
+
+    width: 25rem;
+    padding: 2rem 1rem;
+    border-radius: 1rem;
+}
+
+.login-label {
+    color: var(--gray70);
+
+    margin-bottom: 0.5rem;
+}
+
+.login-input {
+    background-color: rgb(42, 42, 42);
+    color: rgb(246, 246, 246);
+    font-size: 1rem;
+    border: 0;
+    outline: 0;
+    border-radius: 2rem;
+
+    margin-bottom: 1.5rem;
+    padding: 1rem 2rem;
+
+    transition-property: border;
+    transition-duration: 0.1s;  
+}
+
+.login-input:focus {
+    border: solid 0.1rem var(--orange2);
+}
+
+.login-input:user-invalid {
+    border: solid 0.1rem var(--danger);
+}
+
+.login-input:user-valid {
+    border: solid 0.1rem var(--success);
+}
+
+.login-input::placeholder {
+    color: rgb(72, 72, 72);
+}
+
+.login-btn::after {
+    content: 'Log In'
+}
+
+.title-img {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1.2rem;
+}
+
+.signup-btn {
+    background-color: var(--success);
+
+    width: 60%;
+    margin-top: 1rem;
+}
+
+.signup-btn:hover {
+    color: var(--success);
+    border: solid 0.2rem var(--success);
+}
+
+.signup-btn::after {
+    content: 'Sign Up';
+}
+
+/* STANDARD BUTTON */
+.btn {
+    color: white;
+    background-color: var(--orange1);
+    border: solid 0.2rem white;
+    border-radius: 1.5rem;
+    border: 0;
+    font-size: 1rem;
+    font-weight: bold;
+
+    height: 3rem;
+    
+    transition-property: border color;
+    transition-duration: 0.5s;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn::before {
+    content: '';
+    background: white;
+    opacity: 0;
+    border-radius: 2rem;
+
+    height: 100%;
+    width: 0;
+    left:0;
+    top: 0;
+
+    transition-property: width opacity;
+    transition-timing-function: ease-in;
+    transition-duration: 0.2s;
+}
+
+.btn:hover::before {
+    opacity: 1;
+
+    width: 100%;
+}
+
+.btn:hover {
+    color: var(--orange1);
+    border: solid 0.2rem var(--orange1);
+}

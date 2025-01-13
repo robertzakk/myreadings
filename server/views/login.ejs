@@ -1,0 +1,43 @@
+<%- include('components/top_structure', {title: "Login"}) %>
+
+    <link href="styles/styling.css" rel="stylesheet" />
+    <link href="styles/alignment.css" rel="stylesheet" />
+    <link href="styles/login_alignment.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="login-container">
+        <div class="title-container">
+            <img class="title-img" src="../src/imgs/placeholder.png"/>
+            <h1 class="title">My Readings</h1>
+        </div>
+
+        <div class="login-container">
+            <div class="lines">
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+            </div>
+
+            <form class="login" action="/" method="post">
+                <label class="login-label">Email</label>
+                <input class="login-input" required placeholder="Enter Email" name="email"/>
+
+                <label class="login-label">Password</label>
+                <input class="login-input" required placeholder="Enter Password" name="password"/>
+
+                <button class="btn login-btn"type="submit"></button>
+            </form>
+
+            <div class="lines">
+                <div class="line-1"></div>
+                <div class="line-2"></div>
+                <div class="line-3"></div>
+            </div>
+        </div>
+        
+        <button class="signup-btn btn"></button>
+    </div>
+
+<%- include('components/bottom_structure') %>

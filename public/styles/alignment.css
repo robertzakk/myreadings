@@ -1,0 +1,131 @@
+/* Class Selectors */
+
+/* NAVBAR */
+.navbar {
+    position: fixed;
+}
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.navbar-list li {
+    flex: 1;
+}
+
+.navbar-search {
+    flex: 4 !important;
+}
+
+.navbar-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 3;
+}
+
+/* PROFILE */
+.profile {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-picture {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* BOOKS */
+.books-direction {
+    display: flex;
+    justify-content: center;
+}
+
+.orange-line1 {
+    position: relative;
+}
+
+.orange-line2 {
+    position: relative;
+}
+
+.books-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+
+.books-page h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.books-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.books-section div p {
+    text-align: right;
+}
+
+.books-grid {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 10rem);
+    gap: 4rem;
+}
+
+/* FOOTER */
+.footer-copyright div {
+    display: flex;
+    align-items: center;
+}
+
+.footer-developers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* STANDARD BUTTON */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.btn::before {
+    position: absolute;
+}
+
+.btn::after {
+    position: absolute;
+}

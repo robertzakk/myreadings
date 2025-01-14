@@ -17,6 +17,24 @@ const port = 4001;
 
 app.use(bodyParser.json());
 
+app.get("/users/:id", async (req, res) => {
+   try {
+    const response = await db.query(
+        `SELECT name, about FROM users
+         WHERE id = $1`,
+        [req.params.id],
+    );
+
+    if (response.rowCount > 0) {
+        res.json(response.rows[0]);
+    } else {
+        res.status(404).end();
+    };
+   } catch (err) {
+    res.status(404).end();
+   };
+});
+
 app.post("/users/new", async (req, res) => {
     try {
         const response = await db.query(
@@ -32,15 +50,14 @@ app.post("/users/new", async (req, res) => {
         );
     } catch (err) {
         res.status(404).end();
-        console.log(err);
     };
 });
 
-app.post("/users/verify", async (req, res) => {
+app.post("/users/authenticate", async (req, res) => {
+    console.log("Test: " + JSON.stringify(req.body));
     try {
         const response = await db.query(
-            `SELECT name, about FROM user_authentications
-             JOIN users ON user_id = users.id
+            `SELECT user_id FROM user_authentications
              WHERE email = $1 and password = $2`,
             [req.body.email, req.body.password]
         );
@@ -52,7 +69,6 @@ app.post("/users/verify", async (req, res) => {
         };
     } catch (err) {
         res.statusCode(404).end();
-        console.log(err);
     }
 });
 

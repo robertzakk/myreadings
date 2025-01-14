@@ -17,13 +17,20 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
     try {
-        const response = await axios.post("http://localhost:4001/users/new", {
-            email: req.body.email,
-            password: req.body.password,
-        });
+        const userId = (await axios.post(
+            "http://localhost:4001/users/authenticate",
+            {
+                email: req.body.email,
+                password: req.body.password,
+            }
+        )).data.user_id;
+
+        const userInfo = await axios.get(
+            "http://localhost:4001/users/" + userId);
     } catch (err) {
+        console.log("Authentication failed");
+        // User Authentication Failed
         res.status(404).end();
-        console.log(err);
     };
 });
 

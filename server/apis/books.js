@@ -1,4 +1,5 @@
 import express from "express";
+import axios from "axios";
 import bodyParser from "body-parser";
 import pg from "pg";
 
@@ -16,6 +17,26 @@ const app = express();
 const port = 4002;
 
 app.use(bodyParser.json());
+
+app.get("/books/:name", async (req, res) => {
+    try {
+        const response = await axios.get(
+            "https://openlibrary.org/search.json",
+            {
+                params: {
+                    q: req.params.name,
+                    limit: 4,
+                    page: 1,
+                },
+            }
+        );
+
+        res.json(response.data);
+    } catch (err) {
+        console.log(err);
+        res.status(404).end();
+    };
+});
 
 app.listen(port, () => {
     console.log(`Books Private API running on port ${port}.`);

@@ -15,6 +15,16 @@ app.get("/", (req, res) => {
     res.render("index.ejs");
 });
 
+app.get("/books/:name", async (req, res) => {
+    try {
+        const response = await axios.get("http://localhost:4002/books/" + req.params.name);
+
+        res.json(response.data);
+    } catch (err) {
+        res.status(404).end();
+    };
+});
+
 app.post("/", async (req, res) => {
     try {
         const userId = (await axios.post(

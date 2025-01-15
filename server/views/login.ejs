@@ -1,11 +1,15 @@
 <%- include('components/top_structure', {title: "Login"}) %>
 
-    <link href="styles/styling.css" rel="stylesheet" />
-    <link href="styles/alignment.css" rel="stylesheet" />
-    <link href="styles/login_alignment.css" rel="stylesheet" />
+    <link href="/styles/styling.css" rel="stylesheet" />
+    <link href="/styles/alignment.css" rel="stylesheet" />
+    <link href="/styles/login_alignment.css" rel="stylesheet" />
 </head>
 
-<body>
+<body
+<% if (!locals.signup) { %>
+    class="login-body"    
+<% } %>
+>
 
     <div class="login-container">
         <div class="title-container">
@@ -20,15 +24,46 @@
                 <div class="line-3"></div>
             </div>
 
-            <form class="login" action="/" method="post">
-                <label class="login-label">Email</label>
-                <input class="login-input" required placeholder="Enter Email" name="email"/>
+            <% if (locals.signup) { %>
+                <form class="login" action="/api/users" method="post" enctype="multipart/form-data">
+                    <label class="login-label profile-label">Profile Picture</label>
+                    <div class="profile-section">
 
-                <label class="login-label">Password</label>
-                <input class="login-input" required placeholder="Enter Password" name="password"/>
+                        <button class="profile-input-btn" type="button">
+                            <img class="profile-image"/>
+                            <svg  xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="hsl(0, 0%, 70%)" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2M9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                            </svg>
+                        </button>
+                        <input class="profile-input" required type="file" accept=".png, .jpeg" name="profile-picture" />
+                    </div>
 
-                <button class="btn login-btn"type="submit"></button>
-            </form>
+                    <label class="login-label">About</label>
+                    <textarea class="login-input about" required name="about" placeholder="What should people know?"></textarea>
+
+                    <label class="login-label">Name</label>
+                    <input class="login-input" required placeholder="Enter Name" name="username" />
+
+                    <label class="login-label">Email</label>
+                    <input class="login-input" required placeholder="Enter Email" name="email" />
+    
+                    <label class="login-label">Password</label>
+                    <input class="login-input" required placeholder="Enter Password" name="password" />
+    
+                    <button class="btn create-account-btn"type="submit"></button>
+                </form>
+            <% } else { %>
+                <form class="login" action="/" method="post">
+                    <label class="login-label">Email</label>
+                    <input class="login-input" required placeholder="Enter Email" name="email"/>
+    
+                    <label class="login-label">Password</label>
+                    <input class="login-input" required placeholder="Enter Password" name="password"/>
+    
+                    <button class="btn login-btn"type="submit"></button>
+                </form>
+            <% } %>
 
             <div class="lines">
                 <div class="line-1"></div>
@@ -36,8 +71,12 @@
                 <div class="line-3"></div>
             </div>
         </div>
-        
-        <button class="signup-btn btn"></button>
+
+        <% if (!locals.signup) { %>
+            <a class="signup-btn btn" href="http://localhost:4000/signup"></a>
+        <% } %>
     </div>
+
+    <script type="module" src="/src/login.js"></script>
 
 <%- include('components/bottom_structure') %>

@@ -2,7 +2,7 @@
     --ff: "Roboto", serif;
     
     --h1: bold 3rem/1em var(--ff);
-    --h2: 2.5rem/1.4em var(--ff);
+    --h2: 1.5rem/1.4em var(--ff);
     --p: lighter 400 1rem/1.4rem var(--ff);
     --p2: .875rem/1.4em var(--ff);
 
@@ -85,6 +85,10 @@ footer {
     padding: 0 rem;
 }
 
+.navbar-search {
+    position: relative;
+}
+
 .navbar-item {
     min-width: 8rem;
 }
@@ -110,6 +114,68 @@ footer {
 
 .navbar-search-input::placeholder {
     color: var(--orange4);
+}
+
+.search-results {
+    background-color: var(--orange2);
+    border-radius: 1rem;
+    margin: 0;
+    padding: 2rem;
+    width: 100%;
+    top: 3rem;
+    position: absolute;
+    border: solid 0.1rem white;
+    box-shadow: 0rem 0rem 2rem rgba(0, 0, 0, 0.247);
+    display: none;
+    flex-direction: column;
+}
+
+.search-profile {
+    width: 100%;
+    justify-content: left !important;
+    background-color: var(--orange3) !important;
+    margin-bottom: 1rem;
+
+    transition-property: box-shadow;
+}
+
+.search-profile:hover {
+    color: var(--orange3) !important;
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.247);
+}
+
+.search-profile:hover .search-username {
+    color: var(--orange3) !important;
+}
+
+.search-profile:hover .search-image {
+    box-shadow: 0rem 0rem 1rem rgba(0, 0, 0, 0.247);
+}
+
+.search-username {
+    z-index: 1;
+    color: white !important;
+
+    transition-property: color;
+    transition-timing-function: ease-in;
+}
+
+.search-image {
+    height: 4rem;
+    width: 4rem;
+    position: relative;
+    right: 0.5rem;
+    border-radius: 2rem;
+
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
+}
+
+.search-username {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
 }
 
 /* PROFILE */
@@ -243,7 +309,6 @@ footer {
 
 .books-loadmore-btn:hover {
     color: var(--success) !important;
-    border: solid 0.2rem var(--success) !important;
 }
 
 /* FOOTER */
@@ -338,6 +403,10 @@ footer {
     content: 'Log In'
 }
 
+.title-container {
+    margin-top: 5rem;
+}
+
 .title-img {
     width: 5rem;
     height: 5rem;
@@ -345,26 +414,113 @@ footer {
 }
 
 .signup-btn {
-    background-color: var(--success);
+    background-color: var(--success) !important;
 
     width: 60%;
     margin-top: 1rem;
 }
 
 .signup-btn:hover {
-    color: var(--success);
-    border: solid 0.2rem var(--success);
+    color: var(--success) !important;
 }
 
 .signup-btn::after {
     content: 'Sign Up';
 }
 
+.about {
+    outline: 0;
+    height: 10rem;
+    resize: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    position: relative;
+}
+
+.profile-label {
+    align-self: center;
+}
+
+.profile-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.profile-input-btn {
+    height: 10rem;
+    width: 10rem;
+    padding: 0;
+    border: 0;
+    background-color: rgb(42, 42, 42);;
+    border-radius: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-input-btn:hover {
+    cursor: pointer;
+    border: solid 0.2rem var(--orange1);
+
+    transition-property: border;
+    transition-duration: 0.2s;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    display: none;
+}
+
+.profile-input {
+    width: 5rem;
+    height: 5rem;
+    display: none;
+}
+
+.profile-input:user-valid + .profile-input-btn {
+    border: solid 0.1rem var(--success);
+}
+
+.bi-file-earmark-arrow-up {
+    position: absolute;
+
+    transition-property: width height;
+    transition-duration: 0.1s;
+}
+
+.profile-input-btn:hover .bi-file-earmark-arrow-up {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.about::before {
+    content: '0/255 characters';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.create-account-btn {
+    background-color: var(--success) !important;
+}
+
+.create-account-btn:hover {
+    color: var(--success) !important;
+}
+
+.create-account-btn::after {
+    content: "Create Account";
+}
+
 /* STANDARD BUTTON */
 .btn {
     color: white;
     background-color: var(--orange1);
-    border: solid 0.2rem white;
     border-radius: 1.5rem;
     border: 0;
     font-size: 1rem;
@@ -404,5 +560,4 @@ footer {
 
 .btn:hover {
     color: var(--orange1);
-    border: solid 0.2rem var(--orange1);
 }

@@ -18,6 +18,10 @@ const port = 4002;
 
 app.use(bodyParser.json());
 
+app.listen(port, () => {
+    console.log(`Books Private API running on port ${port}.`);
+});
+
 app.get("/books/:name", async (req, res) => {
     try {
         const response = await axios.get(
@@ -38,6 +42,10 @@ app.get("/books/:name", async (req, res) => {
     };
 });
 
-app.listen(port, () => {
-    console.log(`Books Private API running on port ${port}.`);
+app.get("/books/users/:id", () => {
+
+});
+
+app.post("/books/users/:id", () => {
+
 });

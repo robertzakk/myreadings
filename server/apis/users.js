@@ -17,7 +17,11 @@ const port = 4001;
 
 app.use(bodyParser.json());
 
-app.get("/users/:id", async (req, res) => {
+app.listen(port, () => {
+    console.log(`Users Private API running on port ${port}.`);
+});
+
+app.get("/users/:id([0-9]+)", async (req, res) => {
    try {
     const response = await db.query(
         `SELECT name, about FROM users
@@ -35,12 +39,26 @@ app.get("/users/:id", async (req, res) => {
    };
 });
 
-app.post("/users/new", async (req, res) => {
+app.get("/users/:username", async (req, res) => {
+    try {
+        const response = await db.query(
+            `SELECT name FROM users
+             WHERE LOWER(name) LIKE '%' || $1 || '%'`,
+            [req.params.username.toLowerCase()],
+        );
+
+        res.json(response.rows);
+    } catch (err) {
+        res.status(404).end();
+    };
+});
+
+app.post("/users", async (req, res) => {
     try {
         const response = await db.query(
             `INSERT INTO users (name, about)
              VALUES ($1, $2) RETURNING id`,
-            ["olames", "this is the about me also"],
+            [req.body.username, req.body.about],
         );
 
         await db.query(
@@ -48,6 +66,8 @@ app.post("/users/new", async (req, res) => {
              VALUES ($1, $2, $3)`,
             [response.rows[0].id, req.body.email, req.body.password],
         );
+
+        res.json(response.rows[0]);
     } catch (err) {
         res.status(404).end();
     };
@@ -70,8 +90,4 @@ app.post("/users/authenticate", async (req, res) => {
     } catch (err) {
         res.statusCode(404).end();
     }
-});
-
-app.listen(port, () => {
-    console.log(`Users Private API running on port ${port}.`);
 });

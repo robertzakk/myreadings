@@ -12,11 +12,33 @@ $(".navbar-search-input").on("keydown", (event) => {
 
     lastTimout = setTimeout(async () => {
         try {
-            // Lookup users.
+            $(".search-results").children(".search-profile").remove();
+
+            if ($(".navbar-search-input").val().length === 0) {
+                $(".search-results").css("display", "none");
+                return;
+            };
+
+            $(".search-results").css("display", "flex");
+
+            const response = await axios.get("http://localhost:4000/api/users/" + $(".navbar-search-input").val());
+
+            response.data.forEach((userInfo) => {
+                const html = `<button class="btn search-profile" value=${userInfo.name}>
+                    <img class="search-image"/>
+                    <h2 class="search-username">${userInfo.name}</h2>
+                </button>`
+
+                $(".search-results").append(html);
+            });
         } catch (err) {
             console.log(err);
         };
-    }, 1500);
+    }, 500);
+});
+
+$(".search-profile").on("click", (event) => {
+    console.log("User ID Visiting: " + $(".search-profile").val());
 });
 
 /*

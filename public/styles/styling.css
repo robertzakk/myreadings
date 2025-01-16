@@ -138,6 +138,7 @@ footer {
     width: 100%;
     justify-content: left !important;
     background-color: var(--orange3) !important;
+    text-decoration: none;
 
     transition-property: box-shadow;
 }
@@ -170,6 +171,7 @@ footer {
     right: 0.5rem;
     border-radius: 2rem;
     object-fit: cover;
+    background-color: rgb(28, 28, 28);
 
     transition-property: box-shadow;
     transition-duration: 0.2s;

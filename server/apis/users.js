@@ -25,7 +25,8 @@ app.listen(port, () => {
 app.get("/users/:id([0-9]+)", async (req, res) => {
    try {
     const response = await db.query(
-        `SELECT name, about FROM users
+        `SELECT name, about, file_path, mime_type FROM users
+         JOIN user_pictures ON id = user_pictures.user_id
          WHERE id = $1`,
         [req.params.id],
     );

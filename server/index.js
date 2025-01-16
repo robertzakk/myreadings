@@ -27,9 +27,22 @@ app.get("/signup", (req, res) => {
     res.render("login.ejs", { signup: true });
 });
 
-app.get("/users/:id", (req, res) => {
-    console.log(`Redirected to user profile with id: ${req.params.id}`);
-    res.render("index.ejs");
+app.get("/users/:id",async (req, res) => {
+    try {      
+        const response = await axios.get(
+            "http://localhost:4001/users/" + req.params.id);
+
+            const profileImageBuffer = fs.readFileSync(response.data.file_path).toString("base64");
+            const userPictureDataUrl = `data:image/${response.data.mime_type};base64,${profileImageBuffer}`;
+        
+        res.render("index.ejs", {
+            about: response.data.about,
+            username: response.data.name,
+            profileImageDataUrl: userPictureDataUrl,
+        });
+    } catch (err) {
+        res.status(404).end();
+    };
 });
 
 // JSON REQUESTS THROUGH PRIVATE APIS

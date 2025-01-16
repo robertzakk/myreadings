@@ -26,10 +26,11 @@ $(".navbar-search-input").on("keydown", (event) => {
             response.data.forEach((userInfo) => {
                 const userPictureDataUrl = `data:image/${userInfo.mime_type};base64,${userInfo.profileImageBuffer}`;
 
-                const html = `<button class="btn search-profile" value=${userInfo.name}>
+                const html =
+                `<a class="btn search-profile" href="http://localhost:4000/users/${userInfo.id}">
                     <img src=${userPictureDataUrl} class="search-image"/>
                     <h2 class="search-username">${userInfo.name}</h2>
-                </button>`
+                </a>`
 
                 $(".search-results").append(html);
             });
@@ -40,7 +41,11 @@ $(".navbar-search-input").on("keydown", (event) => {
 });
 
 $(".search-profile").on("click", (event) => {
-    console.log("User ID Visiting: " + $(".search-profile").val());
+    try {
+
+    } catch (err) {
+
+    };
 });
 
 /*

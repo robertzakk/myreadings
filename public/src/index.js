@@ -24,8 +24,10 @@ $(".navbar-search-input").on("keydown", (event) => {
             const response = await axios.get("http://localhost:4000/api/users/" + $(".navbar-search-input").val());
 
             response.data.forEach((userInfo) => {
+                const userPictureDataUrl = `data:image/${userInfo.mime_type};base64,${userInfo.profileImageBuffer}`;
+
                 const html = `<button class="btn search-profile" value=${userInfo.name}>
-                    <img class="search-image"/>
+                    <img src=${userPictureDataUrl} class="search-image"/>
                     <h2 class="search-username">${userInfo.name}</h2>
                 </button>`
 

@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
+import fs from "fs";
 import multer from "multer";
 
 // Basic server setup for client HTTP requests.
@@ -19,7 +20,7 @@ app.listen(port, () => {
 
 // WEBPAGE REQUESTS
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    res.render("login.ejs");
 });
 
 app.get("/signup", (req, res) => {
@@ -45,18 +46,28 @@ app.get("/api/books/:name", async (req, res) => {
 app.get("/api/users/:username", async (req, res) => {
     try {
         const response = await axios.get("http://localhost:4001/users/" + req.params.username);
-        
+
+        for (let row of response.data) {
+            row.profileImageBuffer = fs.readFileSync(row.file_path).toString("base64"); 
+        };
+
         res.json(response.data);
     } catch (err) {
+        console.log(err);
         res.status(404).end();
     };
 });
 
 app.post("/api/users", async (req, res) => {
     try {
+        console.log(req.file);
+
         const userId = (await axios.post(
             "http://localhost:4001/users",
             {
+                profileImageBuffer: req.file.buffer,
+                profileImageType: req.file.mimetype.match("image/(.*)")[1],
+
                 username: req.body.username,
                 about: req.body.about,
 
@@ -67,6 +78,7 @@ app.post("/api/users", async (req, res) => {
 
         res.redirect(`http://localhost:${port}/users/` + userId);
     } catch (err) {
+        console.log(err);
         res.status(404).end();
     };
 });

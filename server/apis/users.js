@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import fs from "fs";
 import pg from "pg";
 
 const db = new pg.Client({
@@ -15,7 +16,7 @@ db.connect();
 const app = express();
 const port = 4001;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: "5mb"}));
 
 app.listen(port, () => {
     console.log(`Users Private API running on port ${port}.`);
@@ -42,13 +43,15 @@ app.get("/users/:id([0-9]+)", async (req, res) => {
 app.get("/users/:username", async (req, res) => {
     try {
         const response = await db.query(
-            `SELECT name FROM users
+            `SELECT name, id, file_path, mime_type FROM users
+             JOIN user_pictures ON id = user_pictures.user_id
              WHERE LOWER(name) LIKE '%' || $1 || '%'`,
             [req.params.username.toLowerCase()],
         );
 
         res.json(response.rows);
     } catch (err) {
+        console.log(err);
         res.status(404).end();
     };
 });
@@ -67,8 +70,19 @@ app.post("/users", async (req, res) => {
             [response.rows[0].id, req.body.email, req.body.password],
         );
 
+        const userPictureFilePath = `./server/user_profile_image/${response.rows[0].id}.${req.body.profileImageType}`;
+
+        await db.query(
+            `INSERT INTO user_pictures (user_id, file_path, mime_type)
+             VALUES ($1, $2, $3)`,
+             [response.rows[0].id, userPictureFilePath, req.body.profileImageType],
+        );
+        
+        fs.writeFileSync(userPictureFilePath, Buffer.from(req.body.profileImageBuffer.data));
+
         res.json(response.rows[0]);
     } catch (err) {
+        console.log(err);
         res.status(404).end();
     };
 });

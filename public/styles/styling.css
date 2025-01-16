@@ -130,11 +130,14 @@ footer {
     flex-direction: column;
 }
 
+.search-results > :not(:last-child) {
+    margin-bottom: 2rem;
+}
+
 .search-profile {
     width: 100%;
     justify-content: left !important;
     background-color: var(--orange3) !important;
-    margin-bottom: 1rem;
 
     transition-property: box-shadow;
 }
@@ -166,6 +169,7 @@ footer {
     position: relative;
     right: 0.5rem;
     border-radius: 2rem;
+    object-fit: cover;
 
     transition-property: box-shadow;
     transition-duration: 0.2s;
